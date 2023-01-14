@@ -7,7 +7,7 @@ typedef struct
     int num_disc;
 }Professor;
 
-typedef struct TAula
+typedef struct
 {
     int num_ordem;
     int data;

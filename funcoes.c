@@ -84,7 +84,7 @@ void cad_aluno(Aluno alunos[], int TAM)
 
         cad_prova_trab(alunos->prova_trab);
 
-        cad_aula(alunos->aula);
+        cad_aula(&alunos->aula);
     }
 }
 
@@ -115,7 +115,7 @@ void cad_prova_trab(Prova_trab *prova_trab)
     return;
 }
 
-void cad_aula(Aluno **aula)
+void cad_aula(Aula *aula)
 {
     /*Não é necessario a aula estar dentro da struct aluno
     apenas precisamos para cada aula de uma lista de presença*/
@@ -139,7 +139,7 @@ void cad_aula(Aluno **aula)
     fprintf(faula," %s", aula->conteudo);
 
     printf("Presença ");            //Fazer uma lista de presença
-    scanf(" %c", aula->presenca);
+    scanf(" %c", &aula->presenca);
     fprintf(faula," %c", aula->presenca);
 
     return;
