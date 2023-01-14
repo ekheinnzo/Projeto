@@ -14,12 +14,14 @@ int main()
 
     //Checando se tem Usuario cadastrado se nao houver cria o usuario
     if(!(save_professor = fopen("arquivos/professor.dat", "r"))){
-        professor = cad_professor();
+        professor = cad_professor(save_professor);
         disciplinas = cad_disciplina(professor.num_disc);
     }
-    /*else{
-        //Le os arquivo
-    }*/
+    else{
+        load_professor(save_professor, &professor);
+        disciplinas = load_disciplinas(professor.num_disc);
+    }
+    
 
     return 0;
 }

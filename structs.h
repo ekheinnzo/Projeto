@@ -20,7 +20,7 @@ typedef struct
 {
     char nome[51];
     char tipo;
-    int data;
+    int data; //Rubens - Pensei em fazer uma string data, e pedir para o usuario digitar no formato dd/mm/aa
     float peso;
     float notas;
 } Prova_trab;
