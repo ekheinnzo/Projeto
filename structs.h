@@ -7,10 +7,17 @@ typedef struct
     int num_disc;
 }Professor;
 
+typedef struct TData
+{
+    int dia;
+    int mes;
+    int ano;
+}Data;
+
 typedef struct
 {
     int num_ordem;
-    int data;
+    Data data;
     int qtd_horas_aula;
     char conteudo[256];
     char presenca;
@@ -20,7 +27,7 @@ typedef struct
 {
     char nome[51];
     char tipo;
-    int data; //Rubens - Pensei em fazer uma string data, e pedir para o usuario digitar no formato dd/mm/aa
+    Data data; 
     float peso;
     float notas;
 } Prova_trab;
@@ -30,7 +37,7 @@ typedef struct TAluno
     int matricula;
     char nome_aluno[51];
     Prova_trab prova_trab[15]; // a ideia inicial e que de os indices de 0 - 3 comtenham provas e de 4 -13 trabalhos, 14 - Exame
-    Aula aula;               // pra verificar presença  
+    Aula aula;
 } Aluno;
 
 typedef struct TDisciplina
@@ -47,6 +54,7 @@ typedef struct TDisciplina
     float nota_minima;
     float frequencia; // Percentual de freq p/ aprovação
     Aluno alunos[35];
+
 }Disciplina;
 
 #endif

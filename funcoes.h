@@ -16,4 +16,8 @@ Disciplina *load_disciplinas(int num_disc);
     void load_alunos(Aluno *alunos, int TAM);
         void load_prova_trab (Prova_trab *prova_trab);
             void load_aula(Aula *aula);
+
+void menu(Professor *professor, Disciplina *disciplinas, FILE *save_professor);
+Disciplina *edit_disciplina(int num_disc);
+
 #endif

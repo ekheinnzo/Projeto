@@ -9,6 +9,7 @@ int main()
     FILE *save_professor;
     Professor professor;
     Disciplina *disciplinas;
+
     //Criando diretório para os arquivos
     system("mkdir arquivos");
 
@@ -21,7 +22,7 @@ int main()
         load_professor(save_professor, &professor);
         disciplinas = load_disciplinas(professor.num_disc);
     }
-    
+    menu(&professor, disciplinas, save_professor);
 
     return 0;
 }

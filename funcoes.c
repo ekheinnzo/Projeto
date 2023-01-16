@@ -18,66 +18,56 @@ Professor cad_professor(FILE *save_professor){
 
     printf("Nome do Professor: ");
     scanf(" %[^\n]s", professor.nome);
-    fprintf(save_professor,"%s", professor.nome);
+    fprintf(save_professor,"%s\n", professor.nome);
 
     printf("Quantidade de Disciplinas: ");
     scanf("%i", &professor.num_disc);
-    fprintf(save_professor,"%i", professor.num_disc);
+    fprintf(save_professor,"%i\n", professor.num_disc);
 
     return professor;
 }
 
 Disciplina *cad_disciplina(int num_disc){
 
-    Disciplina *disciplinas = malloc(num_disc * (sizeof(Disciplina)));
-
-    FILE *fdisciplina = fopen("arquivos/fdiscilina.dat", "w");
-
-    if(!fdisciplina){
-        printf("Erro ao Criar arquivo!\n");
-        exit(1);
-    } 
+    Disciplina *disciplinas = malloc(5 * (sizeof(Disciplina)));
 
     for(int i = 0; i < num_disc; i++){
         printf("Nome da disciplina: ");
         scanf(" %[^\n]s", disciplinas[i].nome);
-        fprintf(fdisciplina,"%s",disciplinas[i].nome);
 
         printf("Codigo: ");
         scanf("%i",&disciplinas[i].codigo);
-        fprintf(fdisciplina,"%i",disciplinas[i].codigo);
 
         printf("Ano: ");
         scanf("%i",&disciplinas[i].ano);
-        fprintf(fdisciplina,"%i",disciplinas[i].ano);
 
         printf("Semestre: ");
         scanf("%i",&disciplinas[i].semestre);
-        fprintf(fdisciplina,"%i",disciplinas[i].semestre);
+        fprintf(fdisciplina,"%i\n",disciplinas[i].semestre);
 
         printf("Quantidade de Alunos: ");
         scanf("%i",&disciplinas[i].qtd_alunos);
-        fprintf(fdisciplina,"%i", disciplinas[i].qtd_alunos);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_alunos);
 
         printf("Quantidade de Trabalhos: ");
         scanf("%i",&disciplinas[i].qtd_trabalhos);
-        fprintf(fdisciplina,"%i", disciplinas[i].qtd_trabalhos);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_trabalhos);
 
         printf("Carga Horaria: ");
         scanf("%i",&disciplinas[i].carga_horaria);
-        fprintf(fdisciplina,"%i", disciplinas[i].carga_horaria);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_horaria);
 
         printf("Carga Horaria Realizada: ");
         scanf("%i",&disciplinas[i].carga_hor_realizada);
-        fprintf(fdisciplina,"%i", disciplinas[i].carga_hor_realizada);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_hor_realizada);
 
         printf("Nota minima: ");
         scanf("%f",&disciplinas[i].nota_minima);
-        fprintf(fdisciplina,"%f", disciplinas[i].nota_minima);
+        fprintf(fdisciplina,"%f\n", disciplinas[i].nota_minima);
 
         printf("Frequencia para aprovação: ");
         scanf("%f",&disciplinas[i].frequencia);
-        fprintf(fdisciplina,"%f", disciplinas[i].frequencia);
+        fprintf(fdisciplina,"%f\n", disciplinas[i].frequencia);
 
         cad_aluno(disciplinas[i].alunos, disciplinas->qtd_alunos);
     }
@@ -96,11 +86,11 @@ void cad_aluno(Aluno alunos[], int TAM)
     for(int i = 0; i < TAM; i++){
         printf("Matricula: ");
         scanf("%i",&alunos->matricula);//entender pq seta e nao ponto!!!!!
-        fprintf(falunos,"%i",alunos->matricula);
+        fprintf(falunos,"%i\n",alunos->matricula);
 
         printf("Nome Aluno: ");
         scanf(" %[^\n]s",alunos->nome_aluno);
-        fprintf(falunos,"%s",alunos->nome_aluno);
+        fprintf(falunos,"%s\n",alunos->nome_aluno);
 
         cad_prova_trab(alunos->prova_trab);
 
@@ -119,23 +109,23 @@ void cad_prova_trab(Prova_trab *prova_trab)
 
     printf("Nome da Avaliação: ");
     scanf(" %[^\n]s", prova_trab->nome);
-    fprintf(fprova_trab,"%s", prova_trab->nome);
+    fprintf(fprova_trab,"%s\n", prova_trab->nome);
 
     printf("Tipo de Avaliação: ");
     scanf(" %c",&prova_trab->tipo);
-    fprintf(fprova_trab,"%c",prova_trab->tipo);
+    fprintf(fprova_trab,"%c\n",prova_trab->tipo);
 
     printf("Data da Avaliação: ");
-    scanf("%i",&prova_trab->data);
-    fprintf(fprova_trab,"%i",prova_trab->data);
+    scanf("%i%i%i",&prova_trab->data.dia, &prova_trab->data.mes, &prova_trab->data.ano);
+    fprintf(fprova_trab,"%i %i %i\n",prova_trab->data.dia, prova_trab->data.mes, prova_trab->data.ano);
 
     printf("Peso da Avaliação: ");
     scanf("%f",&prova_trab->peso);
-    fprintf(fprova_trab,"%f",prova_trab->peso);
+    fprintf(fprova_trab,"%f\n",prova_trab->peso);
 
     printf("Nota da Avaliação: ");
     scanf("%f",&prova_trab->notas);
-    fprintf(fprova_trab,"%f",prova_trab->notas);
+    fprintf(fprova_trab,"%f\n",prova_trab->notas);
 
     return;
 }
@@ -154,25 +144,43 @@ void cad_aula(Aula *aula)
 
     printf("Numero de ordem: ");
     scanf("%i", &aula->num_ordem);
-    fprintf(faula,"%i", aula->num_ordem);
+    fprintf(faula,"%i\n", aula->num_ordem);
 
     printf("Data: ");
-    scanf("%i", &aula->data);
-    fprintf(faula,"%i", aula->data);
+    scanf("%i%i%i", &aula->data.dia, &aula->data.mes, &aula->data.ano);
+    fprintf(faula,"%i %i %i\n", aula->data.dia, aula->data.mes, aula->data.ano);
 
     printf("Quantidade de Horas de Aula: ");
     scanf("%i", &aula->qtd_horas_aula);
-    fprintf(faula,"%i", aula->qtd_horas_aula);
+    fprintf(faula,"%i\n", aula->qtd_horas_aula);
 
     printf("Conteudo da aula: ");
     scanf(" %[^\n]s", aula->conteudo);
-    fprintf(faula,"%s", aula->conteudo);
+    fprintf(faula,"%s\n", aula->conteudo);
 
     printf("Presença ");            //Fazer uma lista de presença
     scanf(" %c", &aula->presenca);
-    fprintf(faula,"%c", aula->presenca);
+    fprintf(faula,"%c\n", aula->presenca);
 
     return;
+}
+
+void salvar_displina(Disciplina disciplina[], int num_disc)
+{
+
+    FILE *fdisciplina = fopen("arquivos/fdiscilina.dat", "w");
+
+    if(!fdisciplina){
+        printf("Erro ao Criar arquivo!\n");
+        exit(1);
+    } 
+
+    for(int i = 0; i < num_disc ;i++)
+    {
+       fprintf(fdisciplina,"%s\n",disciplinas[i].nome);
+       fprintf(fdisciplina,"%i\n",disciplinas[i].codigo);
+       fprintf(fdisciplina,"%i\n",disciplinas[i].ano);
+    } 
 }
 
 /* 
@@ -237,7 +245,7 @@ void load_prova_trab (Prova_trab *prova_trab)
 
     fscanf(ler_prova_trab, "%[^\n]s",prova_trab->nome);
     fscanf(ler_prova_trab, "%c", &prova_trab->tipo);
-    fscanf(ler_prova_trab, "%i", &prova_trab->data);
+    fscanf(ler_prova_trab, "%i%i%i", &prova_trab->data.dia, &prova_trab->data.mes, &prova_trab->data.ano);
     fscanf(ler_prova_trab, "%f", &prova_trab->peso);
     fscanf(ler_prova_trab, "%f", &prova_trab->notas);
     return;
@@ -252,10 +260,101 @@ void load_aula(Aula *aula)
     }
 
     fscanf(ler_aula, "%i",&aula->num_ordem);
-    fscanf(ler_aula, "%i",&aula->data);
+    fscanf(ler_aula, "%i%i%i",&aula->data.dia, &aula->data.mes, &aula->data.ano);
     fscanf(ler_aula, "%i",&aula->qtd_horas_aula);
     fscanf(ler_aula, "%[^\n]s",aula->conteudo);
     fscanf(ler_aula, "%c",&aula->presenca);
 
     return;
+}
+
+Disciplina *edit_disciplina(int ){
+
+
+    FILE *fdisciplina = fopen("arquivos/fdiscilina.dat", "w");
+
+    int op;
+
+    if(!fdisciplina){
+        printf("Erro ao abrir arquivo!\n");
+        exit(1);
+
+        printf("Nome da disciplina: ");
+        scanf(" %[^\n]s", disciplinas[i].nome);
+        fprintf(fdisciplina,"%s\n",disciplinas[i].nome);
+
+        printf("Codigo: ");
+        scanf("%i",&disciplinas[i].codigo);
+        fprintf(fdisciplina,"%i\n",disciplinas[i].codigo);
+
+        printf("Ano: ");
+        scanf("%i",&disciplinas[i].ano);
+        fprintf(fdisciplina,"%i\n",disciplinas[i].ano);
+
+        printf("Semestre: ");
+        scanf("%i",&disciplinas[i].semestre);
+        fprintf(fdisciplina,"%i\n",disciplinas[i].semestre);
+
+        printf("Quantidade de Alunos: ");
+        scanf("%i",&disciplinas[i].qtd_alunos);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_alunos);
+
+        printf("Quantidade de Trabalhos: ");
+        scanf("%i",&disciplinas[i].qtd_trabalhos);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_trabalhos);
+
+        printf("Carga Horaria: ");
+        scanf("%i",&disciplinas[i].carga_horaria);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_horaria);
+
+        printf("Carga Horaria Realizada: ");
+        scanf("%i",&disciplinas[i].carga_hor_realizada);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_hor_realizada);
+
+        printf("Nota minima: ");
+        scanf("%f",&disciplinas[i].nota_minima);
+        fprintf(fdisciplina,"%f\n", disciplinas[i].nota_minima);
+
+        printf("Frequencia para aprovação: ");
+        scanf("%f",&disciplinas[i].frequencia);
+        fprintf(fdisciplina,"%f\n", disciplinas[i].frequencia);
+
+        printf("Deseja recadastrar a turma?\nSIM (1) NAO (0)\n");
+            scanf("%i",&op);
+
+        if(op == 1)
+            cad_aluno(disciplinas[i].alunos, disciplinas->qtd_alunos);
+    }
+    return disciplinas;
+}
+
+void menu(Professor *professor, Disciplina *disciplinas, FILE *save_professor)
+{
+    int op, aux;
+
+    printf("########### Gerenciador ###########\n\n");
+    printf("* (1) Editar Professor\n");
+    printf("* (2) Editar Displina\n");
+    printf("Digite a opção desejada: ");
+    scanf("%i", &op);
+
+    switch (op)
+    {
+    case 1:
+        *professor = cad_professor(save_professor);
+        break;
+    
+    case 2:
+        printf("Qual Disciplina deseja Editar?\n");
+        for (int i = 0; i < professor->num_disc; i++)
+            printf("%i %s\n", i+1, disciplinas[i]->nome);
+
+        scanf("%i", &aux);
+        disciplinas = edit_disciplina(aux-1);
+        
+        break;
+    case 3:
+
+        break;
+    }
 }
