@@ -7,24 +7,27 @@
 /* 
 *   ------> Criando Registros
 */
-Professor cad_professor(FILE *save_professor){
+Professor cad_professor(){
 
     Professor professor;
 
-    if(!(save_professor = fopen("arquivos/professor.dat", "w"))){
-        printf("Erro ao Criar arquivo!\n");
-        exit(1);
-    }
-
     printf("Nome do Professor: ");
     scanf(" %[^\n]s", professor.nome);
-    fprintf(save_professor,"%s\n", professor.nome);
-
+    
     printf("Quantidade de Disciplinas: ");
     scanf("%i", &professor.num_disc);
-    fprintf(save_professor,"%i\n", professor.num_disc);
-
+    
+    salva_professor(professor);
     return professor;
+}
+
+void salva_professor (Professor professor) {
+    FILE *arq = fopen("arquivos/professor.dat", "w");
+
+    fprintf(arq ,"%s\n", professor.nome);
+    fprintf(arq ,"%i\n", professor.num_disc);
+
+    fclose(arq);
 }
 
 Disciplina *cad_disciplina(int num_disc){
@@ -43,24 +46,32 @@ Disciplina *cad_disciplina(int num_disc){
 
         printf("Semestre: ");
         scanf("%i",&disciplinas[i].semestre);
-       
+        fprintf(fdisciplina,"%i\n",disciplinas[i].semestre);
+
         printf("Quantidade de Alunos: ");
         scanf("%i",&disciplinas[i].qtd_alunos);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_alunos);
 
         printf("Quantidade de Trabalhos: ");
         scanf("%i",&disciplinas[i].qtd_trabalhos);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_trabalhos);
 
         printf("Carga Horaria: ");
         scanf("%i",&disciplinas[i].carga_horaria);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_horaria);
 
         printf("Carga Horaria Realizada: ");
         scanf("%i",&disciplinas[i].carga_hor_realizada);
+        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_hor_realizada);
 
         printf("Nota minima: ");
         scanf("%f",&disciplinas[i].nota_minima);
+        fprintf(fdisciplina,"%f\n", disciplinas[i].nota_minima);
 
         printf("Frequencia para aprovação: ");
         scanf("%f",&disciplinas[i].frequencia);
+        fprintf(fdisciplina,"%f\n", disciplinas[i].frequencia);
+
         cad_aluno(disciplinas[i].alunos, disciplinas->qtd_alunos);
     }
     return disciplinas;
@@ -172,21 +183,19 @@ void salvar_displina(Disciplina disciplina[], int num_disc)
        fprintf(fdisciplina,"%s\n",disciplinas[i].nome);
        fprintf(fdisciplina,"%i\n",disciplinas[i].codigo);
        fprintf(fdisciplina,"%i\n",disciplinas[i].ano);
-       fprintf(fdisciplina,"%i\n",disciplinas[i].semestre);
-       fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_alunos);
-       fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_trabalhos);
-       fprintf(fdisciplina,"%i\n", disciplinas[i].carga_horaria);
-       fprintf(fdisciplina,"%i\n", disciplinas[i].carga_hor_realizada);
-       fprintf(fdisciplina,"%f\n", disciplinas[i].nota_minima);
-       fprintf(fdisciplina,"%f\n", disciplinas[i].frequencia);
     } 
-    fclose(fdisciplina);
 }
-//#*#*#*#*#*#**##*##*#*##*#*#*##* Leitura dos arquivos
-void load_professor(FILE *save_professor, Professor *professor)
-{
-    fscanf(save_professor, "%[^\n]s", professor->nome);
-    fscanf(save_professor, "%i", &professor->num_disc);
+
+/* 
+*   ------> Lendo Registros
+*/
+void load_professor(Professor *professor) {
+    FILE *arq_professor = fopen("arquivos/professor.dat", "r");
+
+    fscanf(arq_professor, "%[^\n]s", professor->nome);
+    fscanf(arq_professor, "%i", &professor->num_disc);
+
+    fclose(arq_professor);
 }
 
 Disciplina *load_disciplinas(int num_disc)
@@ -325,7 +334,7 @@ Disciplina *edit_disciplina(int ){
     return disciplinas;
 }
 
-void menu(Professor *professor, Disciplina *disciplinas, FILE *save_professor)
+void menu(Professor *professor, Disciplina *disciplinas)
 {
     int op, aux;
 
@@ -338,7 +347,7 @@ void menu(Professor *professor, Disciplina *disciplinas, FILE *save_professor)
     switch (op)
     {
     case 1:
-        *professor = cad_professor(save_professor);
+        *professor = cad_professor();
         break;
     
     case 2:
