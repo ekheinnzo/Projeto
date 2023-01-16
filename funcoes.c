@@ -43,32 +43,24 @@ Disciplina *cad_disciplina(int num_disc){
 
         printf("Semestre: ");
         scanf("%i",&disciplinas[i].semestre);
-        fprintf(fdisciplina,"%i\n",disciplinas[i].semestre);
-
+       
         printf("Quantidade de Alunos: ");
         scanf("%i",&disciplinas[i].qtd_alunos);
-        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_alunos);
 
         printf("Quantidade de Trabalhos: ");
         scanf("%i",&disciplinas[i].qtd_trabalhos);
-        fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_trabalhos);
 
         printf("Carga Horaria: ");
         scanf("%i",&disciplinas[i].carga_horaria);
-        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_horaria);
 
         printf("Carga Horaria Realizada: ");
         scanf("%i",&disciplinas[i].carga_hor_realizada);
-        fprintf(fdisciplina,"%i\n", disciplinas[i].carga_hor_realizada);
 
         printf("Nota minima: ");
         scanf("%f",&disciplinas[i].nota_minima);
-        fprintf(fdisciplina,"%f\n", disciplinas[i].nota_minima);
 
         printf("Frequencia para aprovação: ");
         scanf("%f",&disciplinas[i].frequencia);
-        fprintf(fdisciplina,"%f\n", disciplinas[i].frequencia);
-
         cad_aluno(disciplinas[i].alunos, disciplinas->qtd_alunos);
     }
     return disciplinas;
@@ -180,12 +172,17 @@ void salvar_displina(Disciplina disciplina[], int num_disc)
        fprintf(fdisciplina,"%s\n",disciplinas[i].nome);
        fprintf(fdisciplina,"%i\n",disciplinas[i].codigo);
        fprintf(fdisciplina,"%i\n",disciplinas[i].ano);
+       fprintf(fdisciplina,"%i\n",disciplinas[i].semestre);
+       fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_alunos);
+       fprintf(fdisciplina,"%i\n", disciplinas[i].qtd_trabalhos);
+       fprintf(fdisciplina,"%i\n", disciplinas[i].carga_horaria);
+       fprintf(fdisciplina,"%i\n", disciplinas[i].carga_hor_realizada);
+       fprintf(fdisciplina,"%f\n", disciplinas[i].nota_minima);
+       fprintf(fdisciplina,"%f\n", disciplinas[i].frequencia);
     } 
+    fclose(fdisciplina);
 }
-
-/* 
-*   ------> Lendo Registros
-*/
+//#*#*#*#*#*#**##*##*#*##*#*#*##* Leitura dos arquivos
 void load_professor(FILE *save_professor, Professor *professor)
 {
     fscanf(save_professor, "%[^\n]s", professor->nome);
